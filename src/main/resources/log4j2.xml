@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="baseDir">target</Property>
+		<Property name="moduleName">poc-tomcat-max-connections</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{1}:%L %x %msg%n"/>
+		</Console>
+		<File fileName="${baseDir}/${moduleName}.log" append="false" ignoreExceptions="false" name="RollingFile">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{1}:%L %x %msg%n"/>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger additivity="false" level="DEBUG" name="org.sample">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="RollingFile"/>
+		</Logger>
+		<Root level="INFO">
+			<AppenderRef ref="Console"/>
+			<AppenderRef level="DEBUG" ref="RollingFile"/>
+		</Root>
+	</Loggers>
+</Configuration>
